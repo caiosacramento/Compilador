@@ -28,7 +28,7 @@ bool  analise(char  palavra[])  {
         return  FALSE; 
 } 
 
-//funcao man adicionada para executar funcao do slide
+//funcao main adicionada para executar funcao do slide
 int main() { 
 
     char palavra[]="+6678\n";
