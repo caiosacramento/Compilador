@@ -28,9 +28,10 @@ bool  analise(char  palavra[])  {
         return  FALSE; 
 } 
 
-int main() {
+//funcao man adicionada para executar funcao do slide
+int main() { 
 
-    char palavra[]="#6678\n";
+    char palavra[]="+6678\n";
     printf("Palavra: %s",palavra);
     printf("retorno: %d",analise(palavra));
     return 0;
