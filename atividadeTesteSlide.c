@@ -4,6 +4,7 @@
 #define TRUE 1
 #define FALSE 0
 
+//funcao que realiza a analise
 bool  analise(char  palavra[])  { 
     int k  =  0; 
     while  (palavra[k]  ==  '$'  ||   palavra[k]  ==  '+'  ||  palavra[k]  ==  '-'  ){ 
@@ -17,6 +18,7 @@ bool  analise(char  palavra[])  {
     else         
         return  FALSE; 
 
+    
     if  (palavra[k]  ==  '#'  ) { 
         printf("%c\n",palavra[k]); 
         k++; 
@@ -33,7 +35,7 @@ bool  analise(char  palavra[])  {
 //funcao main adicionada para executar funcao do slide
 int main() { 
 
-    char palavra[]="#akjd\n";
+    char palavra[]="1111\n";
     printf("Palavra: %s",palavra);
     printf("retorno: %d",analise(palavra));
     return 0;
