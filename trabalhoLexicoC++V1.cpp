@@ -10,35 +10,54 @@ int main() {
     char c;
     int aux=0,i=0;//i eh usado para percorrer a string
 
-    
     //Adicionar while infinito para que percorra todo o programa e remover aux
     cout << palavra.length() << endl;    
     while(aux<palavra.length()){
         c=palavra[i];
          switch(estado){
+             //Leitura da instrução Aguarde até
              case 0:
-                 if(c=='a'){  
+/*                  if(c=='a'){  
                     estado=1;
                     cout << "proximo estado é " << estado << endl;}
                  else if(c=='b'){
                     estado=0;
                     cout << "proximo estado é " << estado << endl;}
                  else{
-                    cout << "Erro\n";}
+                    cout << "Erro\n";} */
+                if(c=='A'){
+                    estado=1;
+                    cout << "proximo estado é " << estado << endl;
+                }
+                else if (c =='a'){
+                    estado=2;
+                    cout << "proximo estado é " << estado << endl;
+                }
                  break;
              case 1:
-                 if(c=='b'){
+                 if (c=='p'){
+                     estado=0;
+                 }
+                 /*
+                  if(c=='b'){
                    estado=2;
                    cout << "proximo estado é " << estado << endl;}
-                 else{
-                    cout << "Erro\n";}                    
-                 break;
+                  else{
+                    cout << "Erro\n";}
+                    */
+                 break;     
              case 2:
+                 if(c=='g'){
+                     cout << "Cadeia aceita!\n";}
+                /*  else{
+                    cout << "Erro\n";} */
+            break;
+            case 3:
                  if(c=='\n'){
                      cout << "Cadeia aceita!\n";}
-                 else{
-                    cout << "Erro\n";}
-                 break;
+                /*  else{
+                    cout << "Erro\n";} */
+            break;
          }
          aux++;
          i++;
