@@ -8,25 +8,31 @@ struct token{
 	}
 
 void atualizarColuna(){
-	q++;}
+	q++;
+	
+	}
 
 void atualizaLinha(){
-	q++;};
-
-string palavrasReservadas[3];
-	palavrasReservadas[0]="Acendalampada";
-	palavrasReservadas[1]="Acendalampada";
-	palavrasReservadas[2]="Acendalampada";
+	q++;
+	
+	}
+	
+	//Strings de palavras reservadas
+string palavrasReservadas[4];
+	palavrasReservadas[0]="programainicio";
+	palavrasReservadas[1]="fimprograma";
+	palavrasReservadas[2]="execucaoinicio";
+	palavrasReservadas[3]="fimexecucao";
 
 
 void tratarID(char leitura[Tam_Maximo]){
 	bool flag=false;
 	string token="";
-	while(){
+	while(){ // Varrer todo o buffer
 		token+=leitura[i];
 		atualizarColuna();
 		}
-	for(i<3){
+	for(int i=0;i<4;i++){
 		token==palavrasReservadas[i];
 		flag=true;
 		break;
@@ -35,6 +41,7 @@ void tratarID(char leitura[Tam_Maximo]){
 			
 			}else{}
 	}
+	
 int main(){
 	
 char leitura[Tam_Maximo];
@@ -51,7 +58,7 @@ int tamanhoLeitura = fread(leitura, sizeof(char), Tam_Maximo, stdin);
 
 	while(q<=tamanhoLeitura){
 		char lido=leitura[q];
-		if(lido>=65 && lido<=90 ||){
+		if(lido>=65 && lido<=90 || lido>=97 && lido<=122){
 				tratarID(leitura);
 		}
 	}
