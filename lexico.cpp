@@ -1,10 +1,15 @@
 #include <iostream>
 #include <string>
+#include <sstream>
+#include <fstream>
+#include <locale.h>
+
 #define Tam_Maximo 1000
 
 using namespace std;
 
 int linha=0, coluna=0,q=0;
+string palavrasReservadas[4]={"programainicio","fimprograma","execucaoinicio","fimexecucao"};
 
 struct token{
 	string nome="";
@@ -17,22 +22,15 @@ void atualizaLinha(){
 }
 void atualizarColuna(){
 	q++;
-}
-
-
-	
+}	
 	//Strings de palavras reservadas
-	string palavrasReservadas[4];
-	palavrasReservadas[0]="programainicio";
-	palavrasReservadas[1]="fimprograma";
-	palavrasReservadas[2]="execucaoinicio";
-	palavrasReservadas[3]="fimexecucao";
-
+	
 
 void tratarID(char leitura[Tam_Maximo]){
 	bool flag=false;
 	string token="";
-	while(){ // Varrer todo o buffer
+	int i; //verificar se esse i é aqui mesmo
+	while(1){ // Varrer todo o buffer
 		token+=leitura[i];
 		atualizarColuna();
 		}
@@ -47,24 +45,42 @@ void tratarID(char leitura[Tam_Maximo]){
 	}
 	
 int main(){
-	
+
+/* string leitura = "programainicio @ + fimprograma";
+int tamanhoLeitura = leitura.length();
+ */
+ifstream arquivo;
+string line;
+int linha=1;
 char leitura[Tam_Maximo];
-int tamanhoLeitura = fread(leitura, sizeof(char), Tam_Maximo, stdin);
+arquivo.open("in.txt");
 
+//int tamanhoLeitura = fread(arquivo, sizeof(char), Tam_Maximo, stdin);
 
-	for (int i=0; i<tamanhoLeitura; i++){
+	//for verifica se existe alguma caractere invalido e retorna erro caso encontre
+	/* for (int i=0; i<tamanhoLeitura; i++){
 		if(leitura[i]>126){
 			cout<<"erro\n";
-			return 0;
-			}
-		
-	}
-
+			return 0;}
+	} */
+while(getline(arquivo,line)){
+    for (int i=0; i < line.length(); i++){
+		cout<<"caractere "<<line[i]<< " linha "<< i << endl;
+         if ((line[i]>126)||(line[i]=='!')){
+		 cout<<"erro coluna " << i << " linha " << linha << endl;
+			return 0;}
+    }
+	linha++;
+}
 	//while que vai até o fim do tamanho do arquivo a ser verificado
-	while(q<=tamanhoLeitura){
+	/* while(q<=tamanhoLeitura){
 		char lido=leitura[q];
 		if(lido>=65 && lido<=90 || lido>=97 && lido<=122){
-				tratarID(leitura);
+				//tratarID(leitura);
+				cout<<"texto " << lido <<endl;}
+		else{
+			cout<<"erro caractere desconhecido " << lido <<endl;
 		}
-	}
+		q++;
+	} */
 }
