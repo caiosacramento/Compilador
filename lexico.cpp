@@ -66,7 +66,8 @@ arquivo.open("in.txt");
 while(getline(arquivo,line)){
     for (int i=0; i < line.length(); i++){
 		cout<<"caractere "<<line[i]<< " linha "<< i << endl;
-         if ((line[i]>126)||(line[i]=='!')){
+         //falta tratamento de cararcteres acentuados
+		 if (line[i]>126){
 		 cout<<"erro coluna " << i << " linha " << linha << endl;
 			return 0;}
     }
