@@ -1,5 +1,7 @@
 #include <iostream>
-define Tam_Maximo 1000
+#include <string>
+#define Tam_Maximo 1000
+
 int linha=0, coluna=0,q=0;
 
 struct token{
@@ -18,7 +20,7 @@ void atualizaLinha(){
 	}
 	
 	//Strings de palavras reservadas
-string palavrasReservadas[4];
+	string palavrasReservadas[4];
 	palavrasReservadas[0]="programainicio";
 	palavrasReservadas[1]="fimprograma";
 	palavrasReservadas[2]="execucaoinicio";
@@ -56,6 +58,7 @@ int tamanhoLeitura = fread(leitura, sizeof(char), Tam_Maximo, stdin);
 		
 	}
 
+	//while que vai até o fim do tamanho do arquivo a ser verificado
 	while(q<=tamanhoLeitura){
 		char lido=leitura[q];
 		if(lido>=65 && lido<=90 || lido>=97 && lido<=122){
