@@ -2,6 +2,8 @@
 #include <string>
 #define Tam_Maximo 1000
 
+using namespace std;
+
 int linha=0, coluna=0,q=0;
 
 struct token{
