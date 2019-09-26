@@ -51,7 +51,8 @@ int tamanhoLeitura = leitura.length();
  */
 ifstream arquivo;
 string line;
-int linha=1;
+string padrao;
+int linha=1,j=0;
 char leitura[Tam_Maximo];
 arquivo.open("in.txt");
 
@@ -65,6 +66,9 @@ arquivo.open("in.txt");
 	} */
 while(getline(arquivo,line)){
     for (int i=0; i < line.length(); i++){
+		char aux=line[i];
+		padrao += aux;
+		//padrao.insert(padrao.end(),aux);
 		cout<<"caractere "<<line[i]<< " linha "<< i << endl;
          //falta tratamento de cararcteres acentuados
 		 if (line[i]>126){
@@ -73,6 +77,12 @@ while(getline(arquivo,line)){
     }
 	linha++;
 }
+
+cout<< padrao<<endl;
+/* for (int k = 0; k < 50; k++){
+	cout << "texto padrao vetor " <<padrao[k] << endl;
+} */
+
 	//while que vai até o fim do tamanho do arquivo a ser verificado
 	/* while(q<=tamanhoLeitura){
 		char lido=leitura[q];

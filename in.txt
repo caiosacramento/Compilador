@@ -1,5 +1,5 @@
-programainicio 
-1 
+programainicio
+1
 é
-2 
-fimprograma 
+2
+fimprograma
