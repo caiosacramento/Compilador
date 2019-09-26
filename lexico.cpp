@@ -9,17 +9,17 @@ int linha=0, coluna=0,q=0;
 struct token{
 	string nome="";
 	string conteudo="";
-	}
-
-void atualizarColuna(){
-	q++;
-	
-	}
+	};
 
 void atualizaLinha(){
 	q++;
 	
+}
+void atualizarColuna(){
+	q++;
 	}
+
+
 	
 	//Strings de palavras reservadas
 	string palavrasReservadas[4];
