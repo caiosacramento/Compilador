@@ -1,1 +1,1 @@
-string
+	padrao += ' ';

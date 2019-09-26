@@ -50,14 +50,12 @@ int main(){
 int tamanhoLeitura = leitura.length();
  */
 ifstream arquivo;
-string line;
+string line,line2;
 string padrao;
-int linha=1,j=0;
+int linhaCursor=1,j=0;
 char leitura[Tam_Maximo];
 arquivo.open("in.txt");
-
 //int tamanhoLeitura = fread(arquivo, sizeof(char), Tam_Maximo, stdin);
-
 	//for verifica se existe alguma caractere invalido e retorna erro caso encontre
 	/* for (int i=0; i<tamanhoLeitura; i++){
 		if(leitura[i]>126){
@@ -68,22 +66,31 @@ while(getline(arquivo,line)){
     for (int i=0; i < line.length(); i++){
 		char aux=line[i];
 		padrao += aux;
-		//padrao.insert(padrao.end(),aux);
-		cout<<"caractere "<<line[i]<< " linha "<< i << endl;
+		cout<<"caractere "<<line[i]<< " Coluna "<< i+1 << endl;
          //falta tratamento de cararcteres acentuados
-		 if (line[i]>126){
-		 cout<<"erro coluna " << i << " linha " << linha << endl;
+		 //i representa a coluna, linhaCursor representa a Linha
+		 if ((line[i]>126)||(line[i]=='!')){
+		 cout<<"erro Linha " << linhaCursor << " Coluna "  << i+1 << endl;
 			return 0;}
     }
-	linha++;
+	padrao += ' ';
+	linhaCursor++;
 }
-
+arquivo.close();
 cout<< padrao<<endl;
-/* for (int k = 0; k < 50; k++){
-	cout << "texto padrao vetor " <<padrao[k] << endl;
-} */
+arquivo.open("in.txt");
+//cout<<"Segundo getLine"<<endl;
 
-	//while que vai até o fim do tamanho do arquivo a ser verificado
+while(q<padrao.length()){
+	char lido=padrao[q];
+	//cout<<lido<<endl;
+		if(lido>=65 && lido<=90 || lido>=97 && lido<=122){
+			//chamar funcao passanado inicio da sting
+			cout<<"Segundo While Is Alpha "<< lido << endl;}	
+		else{
+			cout<<"Caractere Desconhecido"<< endl;}
+	q++;
+}
 	/* while(q<=tamanhoLeitura){
 		char lido=leitura[q];
 		if(lido>=65 && lido<=90 || lido>=97 && lido<=122){
