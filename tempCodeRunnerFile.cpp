@@ -1,1 +1,1 @@
-	padrao += ' ';
+entao
