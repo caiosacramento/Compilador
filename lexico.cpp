@@ -55,12 +55,13 @@ void tratarReservadas(char leitura[Tam_Maximo]){
 	int i; //verificar se esse i é aqui mesmo
 	while(1){ // Varrer todo o buffer
 		if((leitura[q]==' ')||(leitura[q]=='\n')){
-			cout << "Fim de string" << endl;
+			//cout << "Fim de string" << endl;
 			break;}
 		token+=leitura[q];	
 		//atualizarColuna(); remover q++ 
 		q++;
 	}
+	//verifica se a palavras esta na lista de palvras reservadas
 	for (int i=0; i<23; i++){
 			if (palavrasReservadas[i].compare(token) == 0){
 				flag=true;
@@ -69,7 +70,7 @@ void tratarReservadas(char leitura[Tam_Maximo]){
 	if (flag){
 		cout << token << " -- palavra reservada" << endl;}
 	else {
-		cout << token << " -- ID" << endl;}
+		cout << token << " -- ID/Variavel" << endl;}
 	/* 	for(int i=0;i<4;i++){
 		if(token==palavrasReservadas[i]){
 			flag=true;
@@ -81,31 +82,29 @@ void tratarReservadas(char leitura[Tam_Maximo]){
 		} */
 }
 
+//funcao que verica se a palavra é um numero ou uma sequencia deles
 void tratarNumeros(char leitura[Tam_Maximo]){
 	bool flag=false;
 	string token="";
 
-	int i; //verificar se esse i é aqui mesmo
+	int i; //remover
 	while(1){ // Varrer todo o buffer
 		if((leitura[q]==' ')||(leitura[q]=='\n')){
-			cout << "Fim de string" << endl;
+			// cout << "Fim de Numero" << endl;
+			break;}
+
+		//tratamento para leitura apenas dos numeros validos
+		if((leitura[q]<48) || (leitura[q]>57)){
+			cout << "Erro no Numero Coluna " << q << endl;
 			break;}
 		token+=leitura[q];	
 		//atualizarColuna(); remover q++ 
 		q++;
 	}
-	if (flag){
-		cout << token << " -- palavra reservada" << endl;}
-	else {
-		cout << token << " -- ID" << endl;}
+	cout<<token<< " -- Digito/Numero" << endl;
 }
 
-	
 int main(int argc, const char** argv) {
-
-/* string leitura = "programainicio @ + fimprograma";
-int tamanhoLeitura = leitura.length();
- */
 string padrao;
 int linhaCursor=1,j=0;
 char leitura[Tam_Maximo];
@@ -151,15 +150,15 @@ while(q<tamanhoLeitura){
 		 //65-> "A" && 90-> "Z" 97-> a && 122->z
 		if(lido>=65 && lido<=90 || lido>=97 && lido<=122){
 			tratarReservadas(leitura);
-			//chamar funcao passanado inicio da sting
-			//cout<<"Segundo While Is Alpha "<< lido << endl;
+			//cout<<"Tramento de Palavras Reservadas/ID"<< lido << endl;
 		}
 		else if((lido>=48) && (lido<=57)){
-			//tratarNumeros(leitura);
-			cout<< "O valor de lido é: "<< lido << " tratar numeros"<< endl;
+			//cout<< "Tratamento de numeros "<< lido << " tratar numeros"<< endl;
+			tratarNumeros(leitura);
 		}		
 		else{
-			cout<<"Caractere Desconhecido "<< lido << endl;
+		//	cout<<"Caractere Desconhecido "<< lido << endl;
+		//adicionar caso de caracteres invalidos e especiais
 		}
 	q++;
 }
