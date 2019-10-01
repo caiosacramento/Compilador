@@ -10,30 +10,47 @@ using namespace std;
 
 int linha=0, coluna=0,q=0;
 
-string palavrasReservadas[23]={	"Execucaoinicio",
+
+string palavrasReservadas[38]={	"programainicio",
+								"execucaoinicio",
 								"fimexecucao",
-								"Acendalampada",
-								"Aguarde",
-								"ate",
-								"Definainstrucao",
-								"como",
-								"Enquanto",
-								"faca",
-								"Finalize",
-								"Mova",
-								"Pare",
-								"Programainicio",
 								"fimprograma",
-								"Repita",
-								"VEZES",
+								"definainstrucao",
+								"como",
+								"inicio",
+								"fim",
+								"repita",
+								"vezes",
 								"fimrepita",
 								"se",
-								"entao", 
+								"entao",
 								"fimse",
 								"senao",
 								"fimsenao",
-								"VirePara"							
-								};
+								"mova",
+								"passos",
+								"Vire Para",
+								"Pare",
+								"Finalize",
+								"Apague Lampada",
+								"Acenda Lampada",
+								"Aguarde Ate",
+								"Robo Pronto",
+								"Robo Ocupado",
+								"Robo Parado",
+								"Robo Movimentando",
+								"Frente Robo Bloqueada",
+								"Direta Robo Bloqueada",
+								"Esquerda Robo Bloqueada",
+								"Lampada Acessa a Frente",
+								"Lampada Apagada a Frente",
+								"Lampada Acessa A Esquerda",
+								"Lampada Apagada A Esquerda",
+								"Lampada Acessa A Direita",
+								"Lampada Apagada A Direita",
+								"esquerda",
+								"direita"
+};
 
 struct token{
 	string nome="";
@@ -68,9 +85,9 @@ void tratarReservadas(char leitura[Tam_Maximo]){
 				break;}
 	}
 	if (flag){
-		cout << token << " -- palavra reservada" << endl;}
+		cout << token << " -- Keyword" << endl;}
 	else {
-		cout << token << " -- ID/Variavel" << endl;}
+		cout << token << " -- Identify" << endl;}
 	/* 	for(int i=0;i<4;i++){
 		if(token==palavrasReservadas[i]){
 			flag=true;
@@ -87,7 +104,7 @@ void tratarNumeros(char leitura[Tam_Maximo]){
 	bool flag=false;
 	string token="";
 
-	int i; //remover
+	int auxPos=0; //remover
 	while(1){ // Varrer todo o buffer
 		if((leitura[q]==' ')||(leitura[q]=='\n')){
 			// cout << "Fim de Numero" << endl;
@@ -95,13 +112,17 @@ void tratarNumeros(char leitura[Tam_Maximo]){
 
 		//tratamento para leitura apenas dos numeros validos
 		if((leitura[q]<48) || (leitura[q]>57)){
-			cout << "Erro no Numero Coluna " << q << endl;
-			break;}
+			//cout << "Erro no Numero Coluna " << q << endl;
+			flag=true;
+			auxPos=q;
+			//break;
+			}
 		token+=leitura[q];	
 		//atualizarColuna(); remover q++ 
 		q++;
 	}
-	cout<<token<< " -- Digito/Numero" << endl;
+	cout<<token<< " -- Number" << endl;
+	cout << "Erro no Numero Coluna " << q << endl;
 }
 
 int main(int argc, const char** argv) {
