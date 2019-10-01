@@ -1,0 +1,32 @@
+﻿Entregáveis 
+
+Validar Identificador,
+		 Numero não pode ser seguido de letra. 
+
+Deve ser capaz de identificar e reportar os erros léxicos encontrados no código fonte (e.g. símbolos desconhecidos ou identificador mal formado). 
+
+Para cada erro encontrado, deve-se informar o posicionamento (linha e coluna) no arquivo fonte de entrada em que o erro ocorreu.
+
+Comentários são definidos em linhas iniciadas com o símbolo “#
+
+O compilador deve aceitar palavras escritas em minúsculas ou maiúsculas.
+
+Validar palavras chave
+
+Verificar se não falta alguma palavras
+
+
+
+
+
+
+
+
+Fornecer:
+
+a) Expressões regulares usadas;
+b) Autômato finito determinístico com função de retorno que indique qual foi o token reconhecido;
+c) Fontes do analisador léxico;
+d) ao menos 2 Arquivos diferentes de testes corretos;
+e) ao menos 3 Arquivos diferentes com erros léxicos;(ID iniciando com numero, caráteres desconhecidos, ??)
+f) imagens com o retorno do analisador léxico tanto para os testes corretos, quanto para os testes com erros léxicos.
