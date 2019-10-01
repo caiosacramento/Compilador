@@ -10,8 +10,12 @@ using namespace std;
 
 int linha=0, coluna=0,q=0;
 
+<<<<<<< HEAD
 
 string palavrasReservadas[38]={	"programainicio",
+=======
+string palavrasReservadas[23]={	"programainicio",
+>>>>>>> a1ab1cc7c9ae8db7ab64492e0d6f317ca03313f8
 								"execucaoinicio",
 								"fimexecucao",
 								"fimprograma",
