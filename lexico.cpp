@@ -4,13 +4,15 @@
 #include <fstream>
 #include <locale.h>*/
 #include <bits/stdc++.h>
+//#include <boost/algorithm/string.hpp>
+
 #define Tam_Maximo 1000
 
 using namespace std;
 
-int linha=0, coluna=0,q=0;
+int linha=1, coluna=1,q=0;
 
-string palavrasReservadas[39]={	"programainicio",
+string palavrasReservadas[40]={	"programainicio",
 								"execucaoinicio",
 								"fimexecucao",
 								"fimprograma",
@@ -28,26 +30,26 @@ string palavrasReservadas[39]={	"programainicio",
 								"fimsenao",
 								"mova",
 								"passos",
-								"Vire",
-								"Para",
-								"Pare",
-								"Finalize",
-								"Apague",
-								"Lampada",
-								"Acenda",
-								"Aguarde",
-								"Ate",
-								"Robo",
-								"Pronto",
-								"Robo",
-								"Ocupado",
-								"Parado",
-								"Movimentando",
-								"Frente",
-								"Bloqueada",
-								"Acessa",
+								"vire",
+								"para",
+								"pare",
+								"finalize",
+								"apague",
+								"lampada",
+								"acenda",
+								"aguarde",
+								"ate",
+								"robo",
+								"pronto",
+								"robo",
+								"ocupado",
+								"parado",
+								"povimentando",
+								"frente",
+								"bloqueada",
+								"acessa",
 								"a",
-								"Apagada",
+								"apagada",
 								"esquerda",
 								"direita"
 };
@@ -66,9 +68,23 @@ void atualizarColuna(){
 }	
 	//Strings de palavras reservadas
 	
+string convertLower(char token[]){
+	string auxToken;
+
+	/* for (int i = 0; i < token.length(); i++){
+		 auxToken[i] = tolower(token[i]);
+	} */
+
+	cout << "Na funcao" << token;
+	//cout << "Na funcao" << to_lower(token);
+
+	//return auxToken;
+}
+
 void tratarReservadas(char leitura[Tam_Maximo]){
 	bool flag=false;
 	string token="";
+	string tokenLower="";
 	int i; //verificar se esse i é aqui mesmo
 	while(1){ // Varrer todo o buffer
 		if((leitura[q]==' ')||(leitura[q]=='\n')){
@@ -79,8 +95,10 @@ void tratarReservadas(char leitura[Tam_Maximo]){
 		q++;
 	}
 	//verifica se a palavras esta na lista de palvras reservadas
-	for (int i=0; i<23; i++){
-			if (palavrasReservadas[i].compare(token) == 0){
+	for (int i=0; i<40; i++){
+			tokenLower=token;
+			transform(tokenLower.begin(), tokenLower.end(), tokenLower.begin(), ::tolower); 
+			if (palavrasReservadas[i].compare(tokenLower) == 0){
 				flag=true;
 				break;}
 	}
@@ -106,23 +124,28 @@ void tratarNumeros(char leitura[Tam_Maximo]){
 
 	int auxPos=0; //remover
 	while(1){ // Varrer todo o buffer
+		if(leitura[q]=='\n'){
+			linha++;
+			coluna=1;
+		}
 		if((leitura[q]==' ')||(leitura[q]=='\n')){
 			// cout << "Fim de Numero" << endl;
 			break;}
 
 		//tratamento para leitura apenas dos numeros validos
 		if((leitura[q]<48) || (leitura[q]>57)){
-			//cout << "Erro no Numero Coluna " << q << endl;
 			flag=true;
-			auxPos=q;
-			//break;
-			}
+			auxPos=coluna+1;
+			cout << "Erro encontrado na Linha " << linha << " - Coluna "  << coluna << endl;	
+			exit(0);
+		}
+
 		token+=leitura[q];	
 		//atualizarColuna(); remover q++ 
 		q++;
+		coluna++;
 	}
-	cout<<token<< " -- Number" << endl;
-	cout << "Erro no Numero Coluna " << q << endl;
+	cout<<token<< " -- Number" << endl;	
 }
 
 int main(int argc, const char** argv) {
