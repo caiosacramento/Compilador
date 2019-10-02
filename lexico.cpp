@@ -4,13 +4,12 @@
 #include <fstream>
 #include <locale.h>*/
 #include <bits/stdc++.h>
-//#include <boost/algorithm/string.hpp>
 
 #define Tam_Maximo 1000
 
 using namespace std;
 
-int linha=1, coluna=1,q=0;
+int linha=1, coluna=1,q=0,auxPos=0;
 
 string palavrasReservadas[40]={	"programainicio",
 								"execucaoinicio",
@@ -70,15 +69,19 @@ void atualizarColuna(){
 	
 string convertLower(char token[]){
 	string auxToken;
-
-	/* for (int i = 0; i < token.length(); i++){
-		 auxToken[i] = tolower(token[i]);
-	} */
-
 	cout << "Na funcao" << token;
 	//cout << "Na funcao" << to_lower(token);
 
 	//return auxToken;
+}
+
+void tratarComentario(char leitura[]){
+	while (1){
+		if(leitura[q]=='\n'){
+			linha++;
+			break;}
+		q++;
+	}
 }
 
 void tratarReservadas(char leitura[Tam_Maximo]){
@@ -87,12 +90,29 @@ void tratarReservadas(char leitura[Tam_Maximo]){
 	string tokenLower="";
 	int i; //verificar se esse i é aqui mesmo
 	while(1){ // Varrer todo o buffer
+		if(leitura[q]=='\n'){
+			linha++;
+			coluna=1;
+		}
 		if((leitura[q]==' ')||(leitura[q]=='\n')){
 			//cout << "Fim de string" << endl;
 			break;}
+
+		if((leitura[q]=='#')){
+			tratarComentario(leitura);
+			break;
+		}
+
+		if(((leitura[q]<48) || (leitura[q]>57))  && ((leitura[q]<65) || (leitura[q]>90)) && ((leitura[q]<97) || (leitura[q]>122))){
+			auxPos=coluna+1;
+			cout << "Erro encontrado na Linha " << linha << " - Coluna "  << coluna << endl;	
+			exit(0);
+		}
+
 		token+=leitura[q];	
 		//atualizarColuna(); remover q++ 
 		q++;
+		coluna++;
 	}
 	//verifica se a palavras esta na lista de palvras reservadas
 	for (int i=0; i<40; i++){
@@ -122,7 +142,7 @@ void tratarNumeros(char leitura[Tam_Maximo]){
 	bool flag=false;
 	string token="";
 
-	int auxPos=0; //remover
+	//int auxPos=0; //remover
 	while(1){ // Varrer todo o buffer
 		if(leitura[q]=='\n'){
 			linha++;
@@ -132,14 +152,17 @@ void tratarNumeros(char leitura[Tam_Maximo]){
 			// cout << "Fim de Numero" << endl;
 			break;}
 
+		if((leitura[q]=='#')){
+			tratarComentario(leitura);
+			break;
+		}
+
 		//tratamento para leitura apenas dos numeros validos
 		if((leitura[q]<48) || (leitura[q]>57)){
-			flag=true;
 			auxPos=coluna+1;
 			cout << "Erro encontrado na Linha " << linha << " - Coluna "  << coluna << endl;	
 			exit(0);
 		}
-
 		token+=leitura[q];	
 		//atualizarColuna(); remover q++ 
 		q++;
@@ -147,6 +170,8 @@ void tratarNumeros(char leitura[Tam_Maximo]){
 	}
 	cout<<token<< " -- Number" << endl;	
 }
+
+
 
 int main(int argc, const char** argv) {
 string padrao;
@@ -199,9 +224,14 @@ while(q<tamanhoLeitura){
 		else if((lido>=48) && (lido<=57)){
 			//cout<< "Tratamento de numeros "<< lido << " tratar numeros"<< endl;
 			tratarNumeros(leitura);
-		}		
+		}
+		else if(lido==35){
+			tratarComentario(leitura);
+		}
+				
 		else{
-		//	cout<<"Caractere Desconhecido "<< lido << endl;
+			cout<<"Caractere Desconhecido "<< lido << endl;
+			break;
 		//adicionar caso de caracteres invalidos e especiais
 		}
 	q++;
