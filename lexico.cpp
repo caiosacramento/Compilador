@@ -75,6 +75,15 @@ string convertLower(char token[]){
 	//return auxToken;
 }
 
+void tratarOtherSymbols(char leitura[]){
+	while (1){
+		if((leitura[q]==' ')||(leitura[q]=='\n')){
+			linha++;
+			break;}
+		q++;
+	}
+}
+
 void tratarComentario(char leitura[]){
 	while (1){
 		if(leitura[q]=='\n'){
@@ -98,15 +107,18 @@ void tratarReservadas(char leitura[Tam_Maximo]){
 			//cout << "Fim de string" << endl;
 			break;}
 
-		if((leitura[q]=='#')){
+		//lê comentario ao lado do ID
+/* 		if((leitura[q]=='#')){
 			tratarComentario(leitura);
 			break;
-		}
+		} */
 
 		if(((leitura[q]<48) || (leitura[q]>57))  && ((leitura[q]<65) || (leitura[q]>90)) && ((leitura[q]<97) || (leitura[q]>122))){
 			auxPos=coluna+1;
 			cout << "Erro encontrado na Linha " << linha << " - Coluna "  << coluna << endl;	
-			exit(0);
+			//exit(0);
+			tratarOtherSymbols(leitura);
+			break;
 		}
 
 		token+=leitura[q];	
@@ -149,26 +161,33 @@ void tratarNumeros(char leitura[Tam_Maximo]){
 			coluna=1;
 		}
 		if((leitura[q]==' ')||(leitura[q]=='\n')){
-			// cout << "Fim de Numero" << endl;
+			// cout << "Fim de Numero" << endl; 
+			//NUMERO# 1#AKDJKDJ
+			//ID#hddhjdhdhd
 			break;}
 
-		if((leitura[q]=='#')){
+		//lê comentario ao lado do NUMERO
+		/* if((leitura[q]=='#')){
 			tratarComentario(leitura);
 			break;
-		}
+		} */
 
 		//tratamento para leitura apenas dos numeros validos
 		if((leitura[q]<48) || (leitura[q]>57)){
 			auxPos=coluna+1;
 			cout << "Erro encontrado na Linha " << linha << " - Coluna "  << coluna << endl;	
-			exit(0);
+			flag=true;
+			tratarOtherSymbols(leitura);
+			break;
 		}
 		token+=leitura[q];	
 		//atualizarColuna(); remover q++ 
 		q++;
 		coluna++;
 	}
-	cout<<token<< " -- Number" << endl;	
+	if(!flag){
+		cout<<token<< " -- Number" << endl;	
+	}
 }
 
 
@@ -225,13 +244,14 @@ while(q<tamanhoLeitura){
 			//cout<< "Tratamento de numeros "<< lido << " tratar numeros"<< endl;
 			tratarNumeros(leitura);
 		}
-		else if(lido==35){
+		else if((lido==35) && (coluna==1)){
 			tratarComentario(leitura);
 		}
 				
-		else{
-			cout<<"Caractere Desconhecido "<< lido << endl;
-			break;
+		else if(lido!='\n'){
+			cout<<"Erro Encontrado no Caractere Desconhecido: " << lido << endl << "Na Linha "<< linha << " Coluna " << coluna << endl;
+			tratarComentario(leitura);
+			//break;
 		//adicionar caso de caracteres invalidos e especiais
 		}
 	q++;

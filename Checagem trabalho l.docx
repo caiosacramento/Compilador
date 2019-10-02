@@ -13,14 +13,16 @@ Comentários são definidos em linhas iniciadas com o símbolo “#
 O compilador deve aceitar palavras escritas em minúsculas ou maiúsculas.
 
 Caso de Teste(Maiusculas e Minusculas)
-Validar palavras chave
 
+Validar palavras chave
 Verificar se não falta alguma palavras
 
-Caso de Teste
-TRATAR  NUMERO# 1#AKDJKDJ
-Tratar  ID#hddhjdhdhd
+Caso de Teste Comentario 
+TRATAR  12313# 1#AKDJKDJ
+Tratar  MOVA#hddhjdhdhd
 
+ID#hddhjdhdhd 
+#kdlskflkdlsk2442
 
 
 Fornecer:
