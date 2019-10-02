@@ -7,18 +7,19 @@ Deve ser capaz de identificar e reportar os erros léxicos encontrados no códig
 
 Para cada erro encontrado, deve-se informar o posicionamento (linha e coluna) no arquivo fonte de entrada em que o erro ocorreu.
 
+Caso de Teste
 Comentários são definidos em linhas iniciadas com o símbolo “#
 
 O compilador deve aceitar palavras escritas em minúsculas ou maiúsculas.
 
+Caso de Teste(Maiusculas e Minusculas)
 Validar palavras chave
 
 Verificar se não falta alguma palavras
 
-
-
-
-
+Caso de Teste
+TRATAR  NUMERO# 1#AKDJKDJ
+Tratar  ID#hddhjdhdhd
 
 
 
