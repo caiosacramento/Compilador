@@ -95,6 +95,7 @@ void tratarComentario(char leitura[]){
 
 void tratarReservadas(char leitura[Tam_Maximo]){
 	bool flag=false;
+	bool flag1=false;
 	string token="";
 	string tokenLower="";
 	int i; //verificar se esse i é aqui mesmo
@@ -116,7 +117,7 @@ void tratarReservadas(char leitura[Tam_Maximo]){
 		if(((leitura[q]<48) || (leitura[q]>57))  && ((leitura[q]<65) || (leitura[q]>90)) && ((leitura[q]<97) || (leitura[q]>122))){
 			auxPos=coluna+1;
 			cout << "Erro encontrado na Linha " << linha << " - Coluna "  << coluna << endl;	
-			//exit(0);
+			flag1=true;
 			tratarOtherSymbols(leitura);
 			break;
 		}
@@ -134,10 +135,12 @@ void tratarReservadas(char leitura[Tam_Maximo]){
 				flag=true;
 				break;}
 	}
-	if (flag){
-		cout << token << " -- Keyword" << endl;}
-	else {
-		cout << token << " -- Identify" << endl;}
+	if(!flag1){
+		if (flag){
+			cout << token << " -- Keyword" << endl;}
+		else {
+			cout << token << " -- Identify" << endl;}
+	}
 	/* 	for(int i=0;i<4;i++){
 		if(token==palavrasReservadas[i]){
 			flag=true;
