@@ -5,8 +5,8 @@
 
 # Estrutura de pastas e Documentos do repositório:
 ## Pasta - Analisador Léxico:
+- Documentação Oficial (PDF) sobre o projeto
 - Analisador lexico
-- Contém a documentação do analisador léxico
 - Casos de teste 
 - Autômato 
 - Expressão regular
@@ -18,5 +18,5 @@
 - Estrutura do repositorio
 
 ## Documento - Checagem trabalho l.docx:
-- Documento que contém informações do projeto no formato word
+- Documento rascunho (word) que contém informações do projeto no formato word
 
