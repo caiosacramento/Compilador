@@ -4,12 +4,20 @@
 #include <fstream>
 #include <locale.h>*/
 #include <bits/stdc++.h>
-
 #define Tam_Maximo 1000
 
 using namespace std;
 
 int linha=1, coluna=1,q=0,auxPos=0;
+
+//struct guarda o lexema e suas informacoes
+struct lexema{
+	int linha;
+	int coluna;
+	string nomeToken;
+	string valorToken;
+};
+
 
 string palavrasReservadas[41]={	"programainicio",
 								"execucaoinicio",
@@ -182,6 +190,7 @@ int main(int argc, const char** argv) {
 string padrao;
 int linhaCursor=1,j=0;
 char leitura[Tam_Maximo];
+
 int tamanhoLeitura = fread(leitura, sizeof(char), Tam_Maximo, stdin);
 
 for (int i=0; i < tamanhoLeitura; i++){
