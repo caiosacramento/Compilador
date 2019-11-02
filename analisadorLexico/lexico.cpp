@@ -19,6 +19,7 @@ struct Lexema{
 };
 
 vector<Lexema>listaTokens;
+vector<Lexema>listaConcatTokens;
 
 string palavrasReservadas[41]={	"programainicio",
 								"execucaoinicio",
@@ -114,7 +115,6 @@ void tratarComentarioErro(char leitura[]){
 	}
 }
 
-
 void tratarReservadas(char leitura[Tam_Maximo]){
 	bool flag=false;
 	bool flag1=false;
@@ -205,8 +205,28 @@ void tratarNumeros(char leitura[Tam_Maximo]){
 		listaTokens.push_back(auxToken);
 	}
 }
-
-
+//funcao para concatena palavras reservadas
+void concatReservadas(){
+	int j=0;
+ for(int i=0; i<listaTokens.size(); i++){
+	if(listaTokens[i].nomeToken=="vire"){
+		if((i+1<listaTokens.size()) && ((listaTokens[i].nomeToken=="para"))){
+			listaConcatTokens[j].nomeToken = listaTokens[i].nomeToken;
+			listaConcatTokens[j].valorToken = listaTokens[i].valorToken;
+			listaConcatTokens[j].linha = listaTokens[i].linha;
+			listaConcatTokens[j].coluna = listaTokens[i].coluna;
+		}
+		else{
+			
+		}
+	}
+	
+	listaTokens[i].nomeToken;
+	listaTokens[i].valorToken;
+	listaTokens[i].linha;
+	listaTokens[i].coluna;
+  }
+}
 
 int main(int argc, const char** argv) {
 string padrao;
