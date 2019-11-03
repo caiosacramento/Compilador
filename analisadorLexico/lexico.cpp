@@ -16,6 +16,7 @@ struct Lexema{
 	int coluna;
 	string nomeToken;
 	string valorToken;
+	string tipoToken="";
 };
 
 vector<Lexema>listaTokens;
@@ -156,14 +157,14 @@ void tratarReservadas(char leitura[Tam_Maximo]){
 	if(!flag1){
 		if (flag){
 			cout << token << " -- Keyword --" << auxToken.linha << " Coluna " << auxToken.coluna << endl;
-			auxToken.nomeToken="Keyword";
-			auxToken.valorToken=token;
+			auxToken.nomeToken=token;
+			auxToken.valorToken="Keyword";
 			listaTokens.push_back(auxToken);
 			}
 		else {
 			cout << token << " -- Identify" << auxToken.linha << " Coluna " << auxToken.coluna << endl;
-			auxToken.nomeToken="Identify";
-			auxToken.valorToken=token;
+			auxToken.nomeToken=token;
+			auxToken.valorToken="Identify";
 			listaTokens.push_back(auxToken);
 			}
 	}
@@ -200,33 +201,12 @@ void tratarNumeros(char leitura[Tam_Maximo]){
 	}
 	if(!flag){
 		cout<<token<< " -- Number" << auxToken.linha << "Coluna" << auxToken.coluna <<endl;	
-		auxToken.nomeToken="Number";
-		auxToken.valorToken=token;
+		auxToken.nomeToken=token;
+		auxToken.valorToken="Number";
 		listaTokens.push_back(auxToken);
 	}
 }
 //funcao para concatena palavras reservadas
-void concatReservadas(){
-	int j=0;
- for(int i=0; i<listaTokens.size(); i++){
-	if(listaTokens[i].nomeToken=="vire"){
-		if((i+1<listaTokens.size()) && ((listaTokens[i].nomeToken=="para"))){
-			listaConcatTokens[j].nomeToken = listaTokens[i].nomeToken;
-			listaConcatTokens[j].valorToken = listaTokens[i].valorToken;
-			listaConcatTokens[j].linha = listaTokens[i].linha;
-			listaConcatTokens[j].coluna = listaTokens[i].coluna;
-		}
-		else{
-			
-		}
-	}
-	
-	listaTokens[i].nomeToken;
-	listaTokens[i].valorToken;
-	listaTokens[i].linha;
-	listaTokens[i].coluna;
-  }
-}
 
 int main(int argc, const char** argv) {
 string padrao;
@@ -272,8 +252,10 @@ while(q<tamanhoLeitura){
 }
 
 cout << endl << endl;
+
 for(int i=0; i<listaTokens.size(); i++){
 		cout<<"\n"<<listaTokens[i].nomeToken<<" "<<listaTokens[i].valorToken<<"\n";
 		cout<<listaTokens[i].linha<<" "<<listaTokens[i].coluna<<"\n";
-  }  
+}  
+
 }
