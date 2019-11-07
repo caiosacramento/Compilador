@@ -166,7 +166,7 @@ string matrizSlr[93][64]={
 
 map <string,int> mapSimboAux; 
 
-
+stack <int> pilha;
 
 struct token{
 	string nome="";
@@ -318,8 +318,6 @@ for(int i=0; i<listaTokens.size(); i++){
 	cout<<"\n"<<listaTokens[i].nomeToken<<" "<<listaTokens[i].valorToken<<"\n";
 	cout<<listaTokens[i].linha<<" "<<listaTokens[i].coluna<<" "<<listaTokens[i].tipoToken<<"\n";
 	if((listaTokens[i].valorToken.compare("Keyword")==0)){
-		//token=mapSimboAux[listaTokens[i].nomeToken];
-		//matrizSlr[]
 		listaTokens[i].tipoToken=listaTokens[i].nomeToken;
 	}
 	if((listaTokens[i].valorToken.compare("Identify")==0)){
@@ -328,10 +326,13 @@ for(int i=0; i<listaTokens.size(); i++){
 	if((listaTokens[i].valorToken.compare("Number")==0)){
 		listaTokens[i].tipoToken="Number";
 		}
-
+		//token=mapSimboAux[listaTokens[i].nomeToken];
+		//matrizSlr[]
 	cout <<"tipo Token: "<<listaTokens[i].tipoToken<<endl;		
 }
 //if(listaTokens[i].valorToken == mapSimboAux->first )
+
+
 
 }
 
