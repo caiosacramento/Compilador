@@ -317,14 +317,20 @@ int token;
 for(int i=0; i<listaTokens.size(); i++){
 	cout<<"\n"<<listaTokens[i].nomeToken<<" "<<listaTokens[i].valorToken<<"\n";
 	cout<<listaTokens[i].linha<<" "<<listaTokens[i].coluna<<" "<<listaTokens[i].tipoToken<<"\n";
-	token=mapSimboAux[listaTokens[i].nomeToken];
-	//matrizSlr[]
-	cout <<"Valor Token" << token<<endl;
-	
-	listaConcatTokens[i] = listaTokens[i];
+	if((listaTokens[i].valorToken.compare("Keyword")==0)){
+		//token=mapSimboAux[listaTokens[i].nomeToken];
+		//matrizSlr[]
+		listaTokens[i].tipoToken=listaTokens[i].nomeToken;
+	}
+	if((listaTokens[i].valorToken.compare("Identify")==0)){
+		listaTokens[i].tipoToken="identify";
+		}
+	if((listaTokens[i].valorToken.compare("Number")==0)){
+		listaTokens[i].tipoToken="Number";
+		}
 
+	cout <<"tipo Token: "<<listaTokens[i].tipoToken<<endl;		
 }
-
 //if(listaTokens[i].valorToken == mapSimboAux->first )
 
 }
@@ -394,46 +400,45 @@ mapSimboAux["fimse"]=17;
 mapSimboAux["senao"]=18;
 mapSimboAux["fimsenao"]=19;
 mapSimboAux["mova"]=20;
-mapSimboAux["INTRUCAO2"]=21;
-mapSimboAux["passos"]=22;
-mapSimboAux["Vire"]=23;
-mapSimboAux["Para"]=24;
-mapSimboAux["Direita"]=25;
-mapSimboAux["Esquerda"]=26;
-mapSimboAux["Pare"]=27;
-mapSimboAux["Finalize"]=28;
-mapSimboAux["Apague"]=29;
-mapSimboAux["Lampada"]=10;
-mapSimboAux["Acenda"]=31;
-mapSimboAux["Aguarde"]=32;
-mapSimboAux["Ate"]=33;
-mapSimboAux["Robo"]=34;
-mapSimboAux["Pronto"]=35;
-mapSimboAux["Ocupado"]=36;
-mapSimboAux["Parado"]=37;
-mapSimboAux["Movimentando"]=38;
-mapSimboAux["Frente"]=39;
-mapSimboAux["Bloqueada"]=40;
-mapSimboAux["Acessa"]=41;
-mapSimboAux["a"]=42;
-mapSimboAux["Apagada"]=43;
-mapSimboAux["identify"]=44;
-mapSimboAux["number"]=45;
-mapSimboAux["$"]=46;
-mapSimboAux["PROGRAMA’"]=47;
-mapSimboAux["PROGRAMA"]=48;
-mapSimboAux["DECLARACAO"]=49;
-mapSimboAux["BLOCO"]=50;
+mapSimboAux["passos"]=21;
+mapSimboAux["vire"]=22;
+mapSimboAux["para"]=23;
+mapSimboAux["direita"]=24;
+mapSimboAux["esquerda"]=25;
+mapSimboAux["pare"]=26;
+mapSimboAux["finalize"]=27;
+mapSimboAux["apague"]=28;
+mapSimboAux["lampada"]=29;
+mapSimboAux["acenda"]=30;
+mapSimboAux["aguarde"]=31;
+mapSimboAux["ate"]=32;
+mapSimboAux["robo"]=33;
+mapSimboAux["pronto"]=34;
+mapSimboAux["ocupado"]=35;
+mapSimboAux["parado"]=36;
+mapSimboAux["movimentando"]=37;
+mapSimboAux["frente"]=38;
+mapSimboAux["bloqueada"]=39;
+mapSimboAux["acessa"]=40;
+mapSimboAux["a"]=41;
+mapSimboAux["apagada"]=42;
+mapSimboAux["identify"]=43;
+mapSimboAux["number"]=44;
+mapSimboAux["$"]=45;
+mapSimboAux["PROGRAMA’"]=46;
+mapSimboAux["PROGRAMA"]=47;
+mapSimboAux["DECLARACAO"]=48;
+mapSimboAux["BLOCO"]=49;
+mapSimboAux["COMANDO2"]=50;
 mapSimboAux["COMANDO"]=51;
 mapSimboAux["ITERACAO"]=52;
 mapSimboAux["LACO"]=53;
 mapSimboAux["CONDICIONAL"]=54;
 mapSimboAux["CONDICIONAL2"]=55;
 mapSimboAux["INSTRUCAO"]=56;
-mapSimboAux["INSTRUCAO2"]=57;
-mapSimboAux["CONDICAO"]=58;
-mapSimboAux["ID"]=59;
-mapSimboAux["NUMERO"]=60;
+mapSimboAux["CONDICAO"]=57;
+mapSimboAux["ID"]=58;
+mapSimboAux["NUMERO"]=59;
 
 syntatic();
 
