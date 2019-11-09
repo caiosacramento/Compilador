@@ -1298,6 +1298,8 @@ while(q<tamanhoLeitura){
 	q++;
 }
 
+//INICIO DO ANALISADOR SINTATICO
+
 cout << endl << endl;
 
 mapSimboAux["programainicio"]=0;
