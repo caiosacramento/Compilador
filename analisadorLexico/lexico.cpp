@@ -4,6 +4,7 @@
 #include <fstream>
 #include <locale.h>*/
 #include <bits/stdc++.h>
+#include <algorithm>    // std::binary_search, std::sort
 #define Tam_Maximo 1000
 
 using namespace std;
@@ -20,12 +21,12 @@ struct Lexema{
 };
 
 vector<Lexema>listaTokens;
-vector<Lexema>listaConcatTokens;
+vector<Lexema>listaTkSemantico;
 map <string,int> mapSimboAux; 
 stack <int> pilha;
 
 Lexema auxReduce;
-bool flagAcc=false;
+bool flagSintatico=false;
 
 string palavrasReservadas[41]={	"programainicio",
 								"execucaoinicio",
@@ -965,7 +966,7 @@ for(int i=0; i<listaTokens.size(); i++){
 
 	//for(int i=0 ; i<listaTokens.size();i++){
 	//while(x!=999){ 
-	while((!listaTokens.empty()) && (!flagAcc)){
+	while((!listaTokens.empty()) && (!flagSintatico)){
 	//while(x<25){ 
 	//cout << "Analisando " << listaTokens.front().nomeToken << endl;
 	//top da pilha inicia com 0
@@ -1002,7 +1003,7 @@ for(int i=0; i<listaTokens.size(); i++){
 	//estado de aceitacao
 	else if((itemTabSlr.compare("acc")==0)){
 		cout << "Aceito " <<endl;
-		flagAcc=true;
+		flagSintatico=true;
 		x=999;
 		break;}
 
@@ -1250,12 +1251,28 @@ void imprimeTokens(){
 	}
 }
 
+void semantic(){
+
+
+}
+
+void convertLowCase(){
+	string tokenLow;
+
+	for(int i=0; i<listaTkSemantico.size(); i++){
+		tokenLow=listaTkSemantico[i].nomeToken;
+		transform(tokenLow.begin(), tokenLow.end(), tokenLow.begin(), ::tolower);
+		listaTkSemantico[i].nomeToken=tokenLow;
+	}
+}
+
 
 int main(int argc, const char** argv) {
 string padrao;
-int linhaCursor=1,j=0;
+int linhaCursor=1,j=0,palRepeat=0,posicRepeat=0; 
 char leitura[Tam_Maximo];
 Lexema auxListToken;
+
 
 int tamanhoLeitura = fread(leitura, sizeof(char), Tam_Maximo, stdin);
 
@@ -1365,6 +1382,7 @@ mapSimboAux["NUMERO"]=58;
 auxListToken.tipoToken="$";
 listaTokens.push_back(auxListToken);
 pilha.push(0);
+listaTkSemantico=listaTokens;
 
 cout << "---ANALISADOR SINTATICO---" << endl << endl;
 
@@ -1375,4 +1393,49 @@ syntatic();
 //imprimeTokens();
 ////showstack(pilha);
 
+cout << endl <<"---ANALISADOR SEMANTICO---" << endl << endl;
+
+if(flagSintatico){
+	//semantic();
+	cout << "Concluiu sintatico" << endl;
+	for (int i = 0; i < listaTkSemantico.size(); i++){
+		convertLowCase(); 
+		if((listaTkSemantico[i].nomeToken.compare("vire")==0) && (listaTkSemantico[i+1].nomeToken.compare("para")==0)){
+			if(listaTkSemantico[i+2].nomeToken.compare("esquerda")==0){
+					if((listaTkSemantico[i+3].nomeToken.compare("vire")==0) && (listaTkSemantico[i+4].nomeToken.compare("para")==0)){
+						if(listaTkSemantico[i+5].nomeToken.compare("direita")==0){
+							cout << "ERRO SEMANTICO !! COMANDO NAO ESPERADO FOI ENCONTRADO NA LINHA(" << listaTkSemantico[i+5].linha << ") Coluna(" << listaTkSemantico[i+5].coluna <<") " << endl;}
+					}
+			}
+			if(listaTkSemantico[i+2].nomeToken.compare("direita")==0){
+					if((listaTkSemantico[i+3].nomeToken.compare("vire")==0) && (listaTkSemantico[i+4].nomeToken.compare("para")==0)){
+						if(listaTkSemantico[i+5].nomeToken.compare("esquerda")==0){
+							cout << "ERRO SEMANTICO !! COMANDO NAO ESPERADO FOI ENCONTRADO NA LINHA (" << listaTkSemantico[i+5].linha << ") Coluna(" << listaTkSemantico[i+5].coluna <<") " << endl;}
+					}
+			}
+		}
+		if((listaTkSemantico[i].nomeToken.compare("mova")==0) && (listaTkSemantico[i+1].valorToken.compare("Number")==0)){
+					if((listaTkSemantico[i+3].nomeToken.compare("aguarde")!=0)){
+							cout << "ERRO SEMANTICO !! COMANDO NAO ESPERADO FOI ENCONTRADO NA LINHA(" << listaTkSemantico[i+3].linha << ") Coluna(" << listaTkSemantico[i+3].coluna <<") " << endl;
+					}
+			}
+
+
+	}
+  for(int i=0; i < listaTkSemantico.size(); i++){
+		if(listaTkSemantico[i].valorToken.compare("Identify")==0){
+			for (int j=i+1; j<listaTkSemantico.size(); i++){
+					if(listaTkSemantico[i].nomeToken.compare(listaTkSemantico[j].nomeToken)==0){
+						palRepeat++;
+						posicRepeat=j-1;
+						break;
+					}
+			}
+		}
+  }
+  if(palRepeat>0){
+  	cout << "ERRO SEMANTICO ENCONTRADO !! Identificador '" << listaTkSemantico[posicRepeat].nomeToken << "' Repetido Encontrado !! Na Linha (" << listaTkSemantico[posicRepeat].linha <<")" << endl;	
+  }
+
+}
 }
